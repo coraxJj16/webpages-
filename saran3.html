@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Download PDF</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        #login-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="login-container">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button onclick="login()">Login</button>
+    </div>
+
+    <script>
+        function login() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            if (username.toLowerCase() === "saranreddy" && password === "1901") {
+                // Create a dummy Blob with PDF content (replace with actual PDF content)
+                var pdfContent = "Dummy PDF Content";
+                var blob = new Blob([pdfContent], { type: "application/pdf" });
+
+                // Create a link and trigger the download
+                var link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = "sample.pdf";
+                link.click();
+            } else {
+                alert("Invalid username or password");
+            }
+        }
+    </script>
+
+</body>
+</html>
+Replace the "Dummy PDF Content" with the actual content of your PDF file. This example generates a simple PDF on the client side for demonstration purposes. In a production environment, you should securely handle PDF files on the server side and authenticate users through a more robust mechanism.
+
+User
+when i send it into other person then the pdf is not getting downloaded
+ChatGPT
+When sending HTML files with embedded JavaScript, keep in mind that client-side actions like automatically triggering a download may be blocked by browsers due to security measures. Additionally, for security reasons, you cannot initiate a file download directly on another person's device without their explicit action.
+
+For a more secure and user-friendly solution, consider the following:
+
+Host the HTML file:
+
+Host your HTML file and any associated assets (like PDF files) on a web server.
+Share a link:
+
+Share a link to the hosted HTML file with the other person.
+User interaction:
+
+The other person needs to open the link in their browser.
+After entering the correct login credentials, they can manually trigger the download by clicking a button or link.
+Here's a modified version of the HTML file with a manual download link:
+
+html
+Copy code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Download PDF</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        #login-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="login-container">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button onclick="login()">Login</button>
+
+        <!-- Manual download link -->
+        <a id="download-link" style="display: none" download="sample.pdf">Download PDF</a>
+    </div>
+
+    <script>
+        function login() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            if (username.toLowerCase() === "saranreddy" && password === "1901") {
+                // Create a dummy Blob with PDF content (replace with actual PDF content)
+                var pdfContent = "C:\Users\joshu\Downloads\saran ticket.pdf";
+                var blob = new Blob([pdfContent], { type: "application/pdf" });
+
+                // Create a link and trigger the download
+                var link = document.getElementById('download-link');
+                link.href = URL.createObjectURL(blob);
+                link.style.display = 'block';
+            } else {
+                alert("Invalid username or password");
+            }
+        }
+    </script>
+
+</body>
+</html>
