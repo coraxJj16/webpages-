@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decision App</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input {
+      padding: 5px;
+    }
+
+    button {
+      margin: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Welcome to the Decision App!</h1>
+
+  <label for="fullName">Full Name:</label>
+  <input type="text" id="fullName" class="form-control mb-2" />
+
+  <button onclick="showOptions()" class="btn btn-primary">Submit</button>
+
+  <div id="optionsContainer" style="display: none; margin-top: 20px;">
+    <h2 id="greeting"></h2>
+    <p id="additionalMessage" style="color: green; margin-bottom: 10px;"></p>
+    <p id="decisionMessage" style="display: none; margin-bottom: 20px;"></p>
+    <p>Please choose an option:</p>
+
+    <button onclick="chooseOption('phone')" class="btn btn-success">Phone</button>
+    <button onclick="chooseOption('laptop')" class="btn btn-info">Laptop</button>
+
+    <div id="phoneOptions" style="display: none; margin-top: 20px;">
+      <p>Choose a phone option:</p>
+      <button onclick="window.location.href='https://www.flipkart.com/motorola-g24-coronte-blue-128-gb/p/itmb3becd208aacb?pid=MOBGUFK4UBP7ZTXJ&param=928&otracker=clp_bannerads_1_11.bannerAdCard.BANNERADS_A_mobile-phones-store_7CFK9QOOE4O3'" class="btn btn-primary">Below 10k</button>
+      <button onclick="window.location.href='https://www.flipkart.com/vivo-t2x-5g-marine-blue-128-gb/p/itmcb8f0f6a85d5d?pid=MOBGZBFUZHRYUKVR&lid=LSTMOBGZBFUZHRYUKVRNME6VW&marketplace=FLIPKART&store=tyy%2F4io&srno=b_1_11&otracker=CLP_Filters&fm=organic&iid=d0df2585-cd19-4799-bb76-15126765c4a8.MOBGZBFUZHRYUKVR.SEARCH&ppt=clp&ppn=mobile-phones-store&ssid=57yb4pq70g0000001706849036509'" class="btn btn-warning">15k</button>
+    </div>
+
+    <p id="laptopMessage" style="display: none; margin-top: 20px;">Please wait till 3rd year end.</p>
+  </div>
+
+  <!-- Bootstrap JS and Popper.js -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    function showOptions() {
+      const fullName = document.getElementById('fullName').value;
+      const greetingElement = document.getElementById('greeting');
+      const additionalMessage = document.getElementById('additionalMessage');
+      const decisionMessage = document.getElementById('decisionMessage');
+      const optionsContainer = document.getElementById('optionsContainer');
+
+      greetingElement.textContent = `Hello, ${fullName}!`;
+      additionalMessage.textContent = "Yes; I have seen the most beautiful girl in the world. And everything will be just fine, just 2 more years and tu is hell sey nikal jaayegi.";
+      additionalMessage.style.display = 'block';
+      decisionMessage.textContent = `What will be your decision, ${fullName}?`;
+      decisionMessage.style.display = 'block';
+      optionsContainer.style.display = 'block';
+    }
+
+    function chooseOption(option) {
+      const phoneOptions = document.getElementById('phoneOptions');
+      const laptopMessage = document.getElementById('laptopMessage');
+
+      if (option === 'phone') {
+        phoneOptions.style.display = 'block';
+        laptopMessage.style.display = 'none';
+      } else {
+        phoneOptions.style.display = 'none';
+        laptopMessage.style.display = 'block';
+      }
+    }
+  </script>
+
+</body>
+</html>
